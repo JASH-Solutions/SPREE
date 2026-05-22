@@ -6,6 +6,7 @@ uvicorn
 sqlalchemy
 pyodbc
 python-dotenv
+pytest
 jupyter
 matplotlib
 seaborn
