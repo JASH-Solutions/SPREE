@@ -115,10 +115,8 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-
 ### Crear entorno virtual
 python -m venv venv
-
 
 ### Activar entorno
 venv\Scripts\activate
@@ -126,6 +124,14 @@ venv\Scripts\activate
 ### Instalar dependencias
 pip install -r requirements.txt
 
+### Generar dataset de prueba
+El proyecto utiliza datos sintéticos para pruebas y demostraciones.
+Ejecutar el script de generación de datos:
+```bash
+python generate_dataset.py
+```
+El archivo generado será almacenado en:
+`data/raw/demographic.csv`
 
 ## Verificar instalación
 
