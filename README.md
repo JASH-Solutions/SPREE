@@ -16,13 +16,15 @@ git --version
 ```
 
 # SPREE-2026
+
 Sistema Predictivo de Retención Estudiantil
 
-
 ## Descripción
+
 SPREE es una plataforma basada en Machine Learning orientada a la detección temprana de riesgo de deserción estudiantil.
 
 ## Tecnologías
+
 - Python 3.12 LTS (a la fecha)
 - FastAPI
 - React + Vite
@@ -30,31 +32,32 @@ SPREE es una plataforma basada en Machine Learning orientada a la detección tem
 - Power BI
 
 ## Estructura del proyecto
+
 El proyecto tiene la siguiente estructura:
 SPREE-2026/
 │
 ├── app/
-│   ├── api/
-│   ├── services/
-│   ├── models/
-│   ├── utils/
-│   └── main.py
+│ ├── api/
+│ ├── services/
+│ ├── models/
+│ ├── utils/
+│ └── main.py
 │
 ├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── external/
+│ ├── raw/
+│ ├── processed/
+│ └── external/
 │
 ├── notebooks/
-│   ├── exploratory/
-│   └── modeling/
+│ ├── exploratory/
+│ └── modeling/
 │
 ├── models/
-│   ├── trained/
-│   └── artifacts/
+│ ├── trained/
+│ └── artifacts/
 │
 ├── docs/
-│   └── architecture/
+│ └── architecture/
 │
 ├── tests/
 ├── venv/
@@ -78,10 +81,7 @@ Explicación breve de carpetas.
 | `/docs`             | Diagramas y documentación   |
 | `/tests`            | Pruebas                     |
 
-
 ## Instalación
-
-
 
 ### 1. Clonar el repositorio
 
@@ -116,22 +116,43 @@ source venv/bin/activate
 ```
 
 ### Crear entorno virtual
+
 python -m venv venv
 
 ### Activar entorno
+
 venv\Scripts\activate
 
 ### Instalar dependencias
+
 pip install -r requirements.txt
 
 ### Generar dataset de prueba
+
 El proyecto utiliza datos sintéticos para pruebas y demostraciones.
 Ejecutar el script de generación de datos:
+
 ```bash
 python generate_dataset.py
 ```
+
 El archivo generado será almacenado en:
 `data/raw/demographic.csv`
+
+## Persistir modelo
+
+Para entrenar y guardar el modelo de riesgo con metadata en JSON:
+
+```bash
+python scripts/train_risk_model.py
+```
+
+Los artefactos se generan en:
+
+```txt
+models/risk_model.pkl
+models/risk_model_metadata.json
+```
 
 ## Verificar instalación
 
@@ -158,4 +179,5 @@ http://127.0.0.1:8000/docs
 ```
 
 ## Equipo
+
 JASH Solutions

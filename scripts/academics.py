@@ -35,7 +35,7 @@ for i in range(N):
         probs = [0.25, 0.25, 0.20, 0.10, 0.05, 0.05, 0.04, 0.03, 0.02, 0.01]
     else:
         probs = [0.15, 0.15, 0.12, 0.12, 0.10, 0.10, 0.08, 0.08, 0.05, 0.05]
-    sem = rng.choice(np.arange(1, 20), p=probs)
+    sem = rng.choice(np.arange(1, 11), p=probs)
     semestres.append(sem)
 
     # Capacidad académica latente
