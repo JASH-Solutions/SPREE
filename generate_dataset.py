@@ -15,6 +15,7 @@ SCRIPTS = [
     "demographic.py",
     "well-being.py",
     "additional.py",
+    "merge_datasets.py",
 ]
 
 def run_script(script_name: str) -> bool:

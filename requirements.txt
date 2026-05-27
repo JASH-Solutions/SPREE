@@ -12,3 +12,4 @@ jupyter
 matplotlib
 seaborn
 openpyxl
+faker
