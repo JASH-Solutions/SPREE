@@ -55,7 +55,10 @@ p {
   display: flex;
   flex-direction: column;
   transition: width 0.3s ease;
-  position: relative;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .sidebar.collapsed {
@@ -89,9 +92,10 @@ p {
 
 .sidebar-brand {
   display: grid;
-  gap: 4px;
+  gap: 6px;
   margin-bottom: 32px;
   margin-top: 20px;
+  justify-items: center;
 }
 
 .sidebar-brand .logo-image {
@@ -110,8 +114,12 @@ p {
 }
 
 .sidebar-brand .subtitle {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .sidebar-nav {
