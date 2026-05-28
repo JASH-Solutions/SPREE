@@ -1,14 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { getAlerts, getStudentDetail, getStudents } from "./api/client";
+import { getAlerts, getFeatureImportance, getReportsSemesterEvolution, getStudentDetail, getStudents } from "./api/client";
 import AlertsPanel from "./components/AlertsPanel";
 import CriticalAlerts from "./components/CriticalAlerts";
+import FeatureImportanceChart from "./components/FeatureImportanceChart";
 import Header from "./components/Header";
 import InterventionForm from "./components/InterventionForm";
 import LoginPage from "./components/LoginPage";
 import MetricCard from "./components/MetricCard";
+import RiskDistributionChart from "./components/RiskDistributionChart";
 import RiskDonut from "./components/RiskDonut";
 import SearchBar from "./components/SearchBar";
+import SemesterEvolutionChart from "./components/SemesterEvolutionChart";
 import Sidebar from "./components/Sidebar";
 import StudentDetailModal from "./components/StudentDetailModal";
 import StudentInferenceForm from "./components/StudentInferenceForm";
@@ -49,6 +52,8 @@ const Dashboard = () => {
     key: "promedio_academico",
     direction: "desc",
   });
+  const [semesterEvolution, setSemesterEvolution] = useState([]);
+  const [featureImportance, setFeatureImportance] = useState([]);
 
   // Keep activePage in sync if role changes or page is no longer accessible
   useEffect(() => {
@@ -85,6 +90,20 @@ const Dashboard = () => {
     };
     load();
   }, []);
+
+  useEffect(() => {
+    if (activePage !== "reportes") return;
+    if (semesterEvolution.length && featureImportance.length) return;
+    Promise.all([
+      getReportsSemesterEvolution(),
+      getFeatureImportance(),
+    ])
+      .then(([semData, featData]) => {
+        setSemesterEvolution(semData.semesters || []);
+        setFeatureImportance(featData.features || []);
+      })
+      .catch((err) => console.error("[app] reports charts load failed", err));
+  }, [activePage, semesterEvolution.length, featureImportance.length]);
 
   const stats = useMemo(() => {
     if (!students.length) return { total: 0, highRisk: 0, retention: 0 };
@@ -281,7 +300,12 @@ const Dashboard = () => {
             <AlertsPanel alerts={alerts} loading={loading} />
           </section>
         );
-      case "reportes":
+      case "reportes": {
+        const distData = [
+          { level: "Alto",  count: riskCounts.Alto,  percentage: stats.total ? Math.round((riskCounts.Alto  / stats.total) * 100) : 0 },
+          { level: "Medio", count: riskCounts.Medio, percentage: stats.total ? Math.round((riskCounts.Medio / stats.total) * 100) : 0 },
+          { level: "Bajo",  count: riskCounts.Bajo,  percentage: stats.total ? Math.round((riskCounts.Bajo  / stats.total) * 100) : 0 },
+        ];
         return (
           <section className="panel reportes">
             <div className="panel-header">
@@ -322,8 +346,27 @@ const Dashboard = () => {
                 <p>Seguimiento semanal con responsables asignados.</p>
               </div>
             </div>
+
+            <div className="charts-grid">
+              <div className="chart-card">
+                <h4 className="chart-title">Distribución de riesgo</h4>
+                <p className="chart-subtitle">Conteo de estudiantes por nivel de riesgo predicho</p>
+                <RiskDistributionChart distribution={distData} />
+              </div>
+              <div className="chart-card">
+                <h4 className="chart-title">Evolución por semestre</h4>
+                <p className="chart-subtitle">Distribución de riesgo acumulada por semestre cursado</p>
+                <SemesterEvolutionChart semesters={semesterEvolution} />
+              </div>
+              <div className="chart-card chart-card--wide">
+                <h4 className="chart-title">Feature importance del modelo de riesgo</h4>
+                <p className="chart-subtitle">Peso relativo de cada variable en la predicción del modelo Random Forest</p>
+                <FeatureImportanceChart features={featureImportance} />
+              </div>
+            </div>
           </section>
         );
+      }
       default:
         return null;
     }

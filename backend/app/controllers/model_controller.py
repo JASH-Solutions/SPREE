@@ -66,6 +66,55 @@ async def list_models(request: Request):
     }
 
 
+@router.get("/feature-importance")
+async def get_feature_importance(request: Request):
+    """
+    Importancia de cada feature en el modelo Random Forest.
+    """
+    risk_model = request.app.state.risk_model
+    pipeline = risk_model.pipeline
+    feature_columns = risk_model.feature_columns
+
+    LABELS = {
+        "promedio_academico": "Promedio Académico",
+        "asistencia_clases": "Asistencia a Clases",
+        "horas_trabajo_semanales": "Horas Trabajo Semanales",
+        "ingresos_familiares": "Ingresos Familiares",
+        "estrato": "Estrato Socioeconómico",
+        "rendimiento_periodo": "Rendimiento del Período",
+    }
+
+    try:
+        preprocessor = pipeline.named_steps["preprocess"]
+        classifier = pipeline.named_steps["classifier"]
+
+        try:
+            raw_names = preprocessor.get_feature_names_out()
+            names = [n.split("__", 1)[-1] if "__" in n else n for n in raw_names]
+        except Exception:
+            names = list(feature_columns)
+
+        importances = classifier.feature_importances_.tolist()
+
+        result = sorted(
+            [
+                {
+                    "feature": name,
+                    "label": LABELS.get(name, name.replace("_", " ").title()),
+                    "importance": round(float(imp), 4),
+                }
+                for name, imp in zip(names, importances)
+            ],
+            key=lambda x: x["importance"],
+            reverse=True,
+        )
+
+        return {"features": result}
+
+    except Exception as exc:
+        return {"features": [], "error": str(exc)}
+
+
 @router.get("/info")
 async def get_model_info(request: Request):
     """

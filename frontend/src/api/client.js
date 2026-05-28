@@ -41,6 +41,18 @@ export const getAlerts = () => {
   return fetch(url).then((response) => handleResponse(response, url));
 };
 
+export const getReportsSemesterEvolution = () => {
+  const url = `${API_BASE}/reports/semester-evolution`;
+  console.debug("[api] GET", url);
+  return fetch(url).then((r) => handleResponse(r, url));
+};
+
+export const getFeatureImportance = () => {
+  const url = `${API_BASE}/model/feature-importance`;
+  console.debug("[api] GET", url);
+  return fetch(url).then((r) => handleResponse(r, url));
+};
+
 export const predictRisk = (payload) => {
   const url = `${API_BASE}/predict-risk`;
   console.debug("[api] POST", url, payload);

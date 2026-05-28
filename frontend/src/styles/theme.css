@@ -779,6 +779,52 @@ tbody tr:hover {
   font-weight: 600;
 }
 
+/* ===== GRÁFICAS DE REPORTES ===== */
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chart-card--wide {
+  grid-column: 1 / -1;
+}
+
+.chart-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--black);
+  margin: 0;
+}
+
+.chart-subtitle {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0 0 12px;
+}
+
+.chart-canvas-wrapper {
+  position: relative;
+  height: 220px;
+  width: 100%;
+}
+
+.chart-canvas-horizontal {
+  height: 240px;
+}
+
 /* ===== INFERENCIA DE RIESGO ===== */
 
 .inference-container {
