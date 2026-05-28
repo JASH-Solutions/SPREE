@@ -3,9 +3,10 @@ import sys
 from pathlib import Path
 
 # Configuración
-SCRIPTS_DIR = Path("scripts")
-RAW_DATA_DIR = Path("../../data/raw")
-PROCESSED_DATA_DIR = Path("../../data/processed")
+SCRIPT_LOCATION = Path(__file__).parent
+SCRIPTS_DIR = SCRIPT_LOCATION / "scripts"
+RAW_DATA_DIR = SCRIPT_LOCATION.parent / "raw"
+PROCESSED_DATA_DIR = SCRIPT_LOCATION.parent / "processed"
 
 SCRIPTS = [
     "personal.py",

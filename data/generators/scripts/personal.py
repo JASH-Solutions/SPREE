@@ -114,7 +114,7 @@ df = pd.DataFrame({
 
 # Guardar CSV en data/raw
 import os
-OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "raw")
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "raw")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 df.to_csv(os.path.join(OUTPUT_DIR, OUTPUT_FILE), index=False, encoding="utf-8")
 print(f"Archivo generado: {OUTPUT_FILE}")

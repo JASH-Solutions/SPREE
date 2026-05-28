@@ -2,7 +2,8 @@ import pandas as pd
 from pathlib import Path
 
 # Directorios
-PROCESSED_DIR = Path("data/processed")
+SCRIPT_LOCATION = Path(__file__).parent
+PROCESSED_DIR = SCRIPT_LOCATION.parent.parent / "processed"
 
 INPUT_FILE = PROCESSED_DIR / "students_preprocessed.csv"
 OUTPUT_FILE = PROCESSED_DIR / "students_labeled.csv"

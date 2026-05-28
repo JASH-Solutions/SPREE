@@ -1,8 +1,9 @@
 import pandas as pd
 from pathlib import Path
 
-RAW_DIR = Path("data/raw")
-PROCESSED_DIR = Path("data/processed")
+SCRIPT_LOCATION = Path(__file__).parent
+RAW_DIR = SCRIPT_LOCATION.parent.parent / "raw"
+PROCESSED_DIR = SCRIPT_LOCATION.parent.parent / "processed"
 
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 

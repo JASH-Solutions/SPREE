@@ -4,10 +4,18 @@
 
 ## Inicio Rápido
 
+```bash
+# Crear entorno virtual
+python -m venv venv
+# Activar entorno virtual
+venv\Scripts\activate
+```
+
 ### 1. Generar Dataset (primera vez)
 
 ```bash
 # Desde la raíz del proyecto
+pip install -r backend/requirements.txt
 python data/generators/generate_dataset.py
 ```
 
@@ -29,7 +37,6 @@ Salida: `data/raw/` (archivos CSV intermedios) → `data/processed/students.csv`
 
 ```bash
 cd backend
-pip install -r requirements.txt
 python -m uvicorn main:app --reload
 ```
 

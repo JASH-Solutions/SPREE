@@ -4,7 +4,8 @@ from pathlib import Path
 from sklearn.preprocessing import StandardScaler
 
 # Directorios
-PROCESSED_DIR = Path("data/processed")
+SCRIPT_LOCATION = Path(__file__).parent
+PROCESSED_DIR = SCRIPT_LOCATION.parent.parent / "processed"
 
 INPUT_FILE = PROCESSED_DIR / "students.csv"
 OUTPUT_FILE = PROCESSED_DIR / "students_preprocessed.csv"
