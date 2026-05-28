@@ -1,0 +1,1 @@
+"""SPREE backend application."""
