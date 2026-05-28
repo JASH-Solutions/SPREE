@@ -1,0 +1,26 @@
+{
+  "interventions": [
+    {
+      "intervention_id": "7606b65b-8b75-4c8c-95ad-f1dfe0ff7133",
+      "student_id": "EST-0006",
+      "tipo": "Financiera",
+      "descripcion": "Se realizo una ayuda monetaria",
+      "responsable": "Jose Mora Pinza",
+      "resultado_esperado": "Que el estudiante pueda seguir pagando su transporte desde su municipio hasta la universidad",
+      "estado": "En progreso",
+      "notas_adicionales": "",
+      "fecha_creacion": "2026-05-28T12:46:55.566870"
+    },
+    {
+      "intervention_id": "aa43a56f-90d8-414e-bbe7-2e68e84958cf",
+      "student_id": "EST-0001",
+      "tipo": "Acad\u00e9mica",
+      "descripcion": "Se realizo una ayuda monetaria",
+      "responsable": "Jose Mora Pinza",
+      "resultado_esperado": "Se espera que el estudiante pueda seguir pagando su transporte diario desde su municipio",
+      "estado": "En progreso",
+      "notas_adicionales": "",
+      "fecha_creacion": "2026-05-28T12:48:19.075618"
+    }
+  ]
+}

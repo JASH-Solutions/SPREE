@@ -40,3 +40,13 @@ export const getAlerts = () => {
   console.debug("[api] GET", url);
   return fetch(url).then((response) => handleResponse(response, url));
 };
+
+export const predictRisk = (payload) => {
+  const url = `${API_BASE}/predict-risk`;
+  console.debug("[api] POST", url, payload);
+  return fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  }).then((response) => handleResponse(response, url));
+};

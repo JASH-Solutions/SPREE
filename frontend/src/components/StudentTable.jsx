@@ -66,7 +66,7 @@ const StudentTable = ({
           )}
           {!loading &&
             students.map((student) => (
-              <tr key={student.id_estudiante} onClick={() => onSelect(student.id_estudiante)}>
+              <tr key={student.id_estudiante} onDoubleClick={() => onSelect(student.id_estudiante)} style={{ cursor: 'pointer' }}>
                 <td>{student.nombre}</td>
                 <td>{student.programa_academico}</td>
                 <td>{student.promedio_academico?.toFixed(2)}</td>

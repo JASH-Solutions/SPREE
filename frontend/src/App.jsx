@@ -4,11 +4,13 @@ import { getAlerts, getStudentDetail, getStudents } from "./api/client";
 import AlertsPanel from "./components/AlertsPanel";
 import CriticalAlerts from "./components/CriticalAlerts";
 import Header from "./components/Header";
+import InterventionForm from "./components/InterventionForm";
 import MetricCard from "./components/MetricCard";
 import RiskDonut from "./components/RiskDonut";
 import SearchBar from "./components/SearchBar";
 import Sidebar from "./components/Sidebar";
 import StudentDetailModal from "./components/StudentDetailModal";
+import StudentInferenceForm from "./components/StudentInferenceForm";
 import StudentTable from "./components/StudentTable";
 import Topbar from "./components/Topbar";
 
@@ -186,6 +188,8 @@ const App = () => {
     resumen: "Resumen",
     analitica: "Analítica",
     estudiantes: "Estudiantes",
+    prediccion: "Predicción",
+    intervenciones: "Intervenciones",
     alertas: "Alertas",
     reportes: "Reportes",
   };
@@ -317,6 +321,18 @@ const App = () => {
               onPageChange={setCurrentPage}
             />
           </section>
+        );
+      case "prediccion":
+        return (
+          <div className="page">
+            <StudentInferenceForm />
+          </div>
+        );
+      case "intervenciones":
+        return (
+          <div className="page">
+            <InterventionForm studentId={selected?.data?.id_estudiante} onSubmitSuccess={() => {}} />
+          </div>
         );
       case "alertas":
         return (
