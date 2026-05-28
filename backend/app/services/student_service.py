@@ -21,7 +21,7 @@ class StudentService:
 
     def list_students(self, page: int, size: int) -> Dict[str, Any]:
         page = max(page, 1)
-        size = max(min(size, 200), 1)
+        size = max(min(size, 500), 1)
         df_page, total = self.repository.get_students_page(page, size)
         risk_probs = self.risk_model.predict_proba(df_page)
         items: List[Dict[str, Any]] = []

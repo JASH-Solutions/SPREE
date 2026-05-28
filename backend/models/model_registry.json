@@ -1,0 +1,30 @@
+{
+  "models": [
+    {
+      "version": "model_v20260528_000334",
+      "path": "C:\\Users\\sebas\\Projects\\UniProjects\\SPREE\\backend\\models\\model_v20260528_000334.joblib",
+      "description": "Production model - clean features (without leakage)",
+      "timestamp": "2026-05-28T00:03:34.466911",
+      "metrics": {
+        "f1_score": 0.76,
+        "recall": 0.8636363636363636,
+        "roc_auc": 0.944253859348199,
+        "accuracy": 0.84
+      },
+      "test_samples": 75
+    },
+    {
+      "version": "model_v20260528_001329",
+      "path": "C:\\Users\\sebas\\Projects\\UniProjects\\SPREE\\backend\\models\\model_v20260528_001329.joblib",
+      "description": "Production model - clean features (without leakage)",
+      "timestamp": "2026-05-28T00:13:29.885832",
+      "metrics": {
+        "f1_score": 0.76,
+        "recall": 0.8636363636363636,
+        "roc_auc": 0.9425385934819898,
+        "accuracy": 0.84
+      },
+      "test_samples": 75
+    }
+  ]
+}

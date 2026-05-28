@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any, Dict, List
+import numpy as np
 
 import pandas as pd
 from sklearn.compose import ColumnTransformer
@@ -15,6 +16,7 @@ from ..repositories.student_repository import (
     FEATURE_COLUMNS,
     NUMERIC_COLUMNS,
 )
+from .metrics import ModelMetrics, calculate_metrics
 
 
 @dataclass
@@ -98,3 +100,27 @@ class RiskModel:
     def predict(self, row: Dict[str, Any]) -> RiskPrediction:
         probability = float(self.predict_proba_row(row))
         return RiskPrediction(level=self.risk_level(probability), probability=probability)
+
+    def evaluate(self, df: pd.DataFrame) -> ModelMetrics:
+        """
+        Evaluar el modelo en un conjunto de datos.
+        
+        Args:
+            df: DataFrame con features y target
+        
+        Returns:
+            ModelMetrics: Métricas de evaluación
+        """
+        if self.target_column not in df.columns:
+            raise ValueError("Target column not found in dataset.")
+        
+        # Preparar target
+        target_series = df[self.target_column].astype(str).str.lower()
+        y_true = target_series.apply(lambda value: 1 if "desertor" in value else 0).values
+        
+        # Predicciones
+        y_pred_proba = np.array(self.predict_proba(df[self.feature_columns]))
+        y_pred = (y_pred_proba >= 0.5).astype(int)
+        
+        # Calcular métricas
+        return calculate_metrics(y_true, y_pred, y_pred_proba)

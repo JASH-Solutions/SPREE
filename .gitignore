@@ -1,21 +1,33 @@
 # =========================
 # Python
 # =========================
+.venv/
 venv/
+env/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.egg-info/
+.Python
 
 # Variables de entorno
 .env
+.env.local
 
 # Jupyter
 .ipynb_checkpoints/
+*.ipynb
 
-# Datos sensibles o pesados
+# ML Models (trained) - Too large for git
+backend/models/*.joblib
+backend/models/*_metrics.json
+# But keep the registry index
+!backend/models/model_registry.json
+
+# Dataset raw & processed
 data/raw/
-models/trained/
+data/processed/
 
 # =========================
 # Node / React / Vite
@@ -23,22 +35,41 @@ models/trained/
 node_modules/
 dist/
 build/
+.turbo/
+*.tsbuildinfo
 
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+*.log
 
 # =========================
 # Sistema operativo
 # =========================
 .DS_Store
 Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 
 # =========================
 # VSCode
 # =========================
 .vscode/
+.vscode-test/
+*.code-workspace
+
+# =========================
+# IDE
+# =========================
+.idea/
+*.swp
+*.swo
+*~
 
 # =========================
 # Azure

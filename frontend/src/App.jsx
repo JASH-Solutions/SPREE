@@ -40,7 +40,7 @@ const App = () => {
         console.debug("[app] loading data...");
         setLoading(true);
         const [studentsResponse, alertsResponse] = await Promise.all([
-          getStudents(1, 250),
+          getStudents(1, 500),
           getAlerts(),
         ]);
         
