@@ -7,7 +7,7 @@ APP_DIR = Path(__file__).resolve().parent
 BACKEND_DIR = APP_DIR.parent
 ROOT_DIR = BACKEND_DIR.parent
 
-DATA_PATH = Path(os.getenv("SPREE_DATA_PATH", str(ROOT_DIR / "students.csv")))
+DATA_PATH = Path(os.getenv("SPREE_DATA_PATH", str(ROOT_DIR / "data" / "processed" / "students.csv")))
 
 _raw_origins = os.getenv("SPREE_CORS_ORIGINS")
 if _raw_origins:
